@@ -1,3 +1,14 @@
-console.log("Hola23123")
-let numero=10
-if(numero>10){console.log("Leo")}
+import express from 'express';
+import {dirname, join} from 'path';
+import {fileURLToPath} from 'url';
+import { conectar } from './public/services/conexion.js';
+
+const app = express();
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+app.set('views', join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});
+conectar()
