@@ -22,3 +22,16 @@ export async function conectar() {
         throw error;
     }
 }
+export async function ConsultarProductos() {
+    const cliente = new Client(config);
+    try{
+        await cliente.connect();
+        const res = await cliente.query('SELECT * FROM productos');
+        await cliente.end();
+        return res.rows;
+    } catch (error) {
+        console.error('Error al consultar productos:', error);
+        await cliente.end();
+        throw error;
+    }
+}
